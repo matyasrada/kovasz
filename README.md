@@ -22,7 +22,7 @@ cd my-project && make init
 
 ## comes with
 
-**tools** — uv, ruff, pre-commit, nbstripout
+**tools** — uv, ruff, pre-commit, nbstripout, jupyterlab, ipykernel
 
 **geospatial stack** — xarray, rioxarray, rasterio, geopandas, pyproj
 
