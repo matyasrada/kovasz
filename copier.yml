@@ -1,0 +1,72 @@
+# ============================================
+# Kovasz - Geospatial Data Science Template
+# ============================================
+
+# Questions
+project_name:
+  type: str
+  help: Project name (lowercase, hyphens ok)
+  validator: >-
+    {% if not project_name | regex_search('^[a-z][a-z0-9-]*$') %}
+    Must be lowercase, start with letter, use only letters/numbers/hyphens
+    {% endif %}
+
+description:
+  type: str
+  help: Short project description
+  default: ""
+
+author:
+  type: str
+  help: Author name
+  default: ""
+
+github_username:
+  type: str
+  help: GitHub username (for repo creation)
+  default: ""
+
+create_github_repo:
+  type: bool
+  help: Create GitHub repo after generation?
+  default: false
+
+private_repo:
+  type: bool
+  help: Make repo private?
+  default: true
+  when: "{{ create_github_repo }}"
+
+# ============================================
+# Template settings
+# ============================================
+_subdirectory: template
+_templates_suffix: .jinja
+
+# Skip these patterns
+_skip_if_exists:
+  - "*.ipynb"
+  - "data/**"
+
+# ============================================
+# Post-generation tasks (uncomment to enable)
+# ============================================
+# _tasks:
+#   - git init
+#   - git add .
+#   - "git commit -m 'Initial commit from kovasz template'"
+#   - "{% if create_github_repo %}gh repo create {{ github_username }}/{{ project_name }} {% if private_repo %}--private{% else %}--public{% endif %} --source=. --push{% endif %}"
+
+# ============================================
+# Success message
+# ============================================
+_message_after_copy: |
+
+  ✓ Project '{{ project_name }}' created!
+
+  Next steps:
+    cd {{ project_name }}
+    make init
+  {% if create_github_repo %}
+  GitHub: https://github.com/{{ github_username }}/{{ project_name }}
+  {% endif %}

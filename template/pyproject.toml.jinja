@@ -1,0 +1,70 @@
+[project]
+name = "{{ project_name }}"
+version = "0.1.0"
+description = "{{ description }}"
+requires-python = ">=3.12"
+dependencies = [
+    # Core
+    "numpy",
+    "python-box",
+    "pyyaml",
+    "requests",
+
+    # Geospatial - Raster
+    "xarray",
+    "xarray-spatial",
+    "rioxarray",
+    "rasterio",
+    "pyproj",
+
+    # Geospatial - Vector
+    "geopandas",
+
+    # Storage formats
+    "h5netcdf",
+    "netcdf4",
+    "zarr",
+
+    # Cloud / Object storage
+    "boto3",
+    "s3fs",
+    "obstore",
+
+    # Parallel / Distributed
+    "dask",
+    "distributed",
+
+    # STAC
+    "pystac",
+    "pystac-client",
+
+    # Open Data Cube
+    "odc-stac",
+    "odc-geo",
+    "odc-loader",
+
+    # ML
+    "scikit-learn",
+    "mlflow",
+
+    # Visualization
+    "matplotlib",
+    "cartopy",
+    "lonboard",
+
+    # Notebooks
+    "jupyter",
+    "nbstripout",
+]
+
+[dependency-groups]
+dev = [
+    "pre-commit",
+    "ruff",
+]
+
+[tool.ruff]
+line-length = 100
+
+[tool.ruff.lint]
+select = ["E", "F", "I"]
