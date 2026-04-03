@@ -70,3 +70,15 @@ _message_after_copy: |
   {% if create_github_repo %}
   GitHub: https://github.com/{{ github_username }}/{{ project_name }}
   {% endif %}
+
+_tasks:
+  - "git init"
+  - "uv venv"
+  - "uv pip install -e .[dev]"
+  - "uv run python -m ipykernel install --user --name {{ project_name }} --display-name 'Python ({{ project_name }})"
+  - "bash setup.sh"
+  - "uv run pre-commit install"
+  - "[ -n '{{ remote_url }}' ] && (git remote remove origin; git tag | xargs git tag -d 2>/dev/null || true; git remote add origin {{ remote_url }}) || true"
+
+_exclude:
+  - README.md
