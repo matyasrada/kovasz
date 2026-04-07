@@ -8,8 +8,8 @@ minimal geospatial data science template
 
 ```bash
 uv tool install copier
-copier copy gh:matyasrada/kovasz my-project
-cd my-project && make init
+copier copy --trust gh:matyasrada/kovasz my-project
+cd my-project && make run
 ```
 
 ## prompts
@@ -17,8 +17,6 @@ cd my-project && make init
 - **project_name** — lowercase, hyphens ok
 - **description** — one-liner
 - **author** — your name
-- **github_username** — optional, for repo creation
-- **create_github_repo** — auto-create repo on github
 
 ## comes with
 

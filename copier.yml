@@ -6,6 +6,7 @@
 project_name:
   type: str
   help: Project name (lowercase, hyphens ok)
+  default: "{{ _folder_name }}"
   validator: >-
     {% if not project_name | regex_search('^[a-z][a-z0-9-]*$') %}
     Must be lowercase, start with letter, use only letters/numbers/hyphens
@@ -21,21 +22,6 @@ author:
   help: Author name
   default: ""
 
-github_username:
-  type: str
-  help: GitHub username (for repo creation)
-  default: ""
-
-create_github_repo:
-  type: bool
-  help: Create GitHub repo after generation?
-  default: false
-
-private_repo:
-  type: bool
-  help: Make repo private?
-  default: true
-  when: "{{ create_github_repo }}"
 
 # ============================================
 # Template settings
@@ -49,15 +35,6 @@ _skip_if_exists:
   - "data/**"
 
 # ============================================
-# Post-generation tasks (uncomment to enable)
-# ============================================
-# _tasks:
-#   - git init
-#   - git add .
-#   - "git commit -m 'Initial commit from kovasz template'"
-#   - "{% if create_github_repo %}gh repo create {{ github_username }}/{{ project_name }} {% if private_repo %}--private{% else %}--public{% endif %} --source=. --push{% endif %}"
-
-# ============================================
 # Success message
 # ============================================
 _message_after_copy: |
@@ -66,19 +43,16 @@ _message_after_copy: |
 
   Next steps:
     cd {{ project_name }}
-    make init
-  {% if create_github_repo %}
-  GitHub: https://github.com/{{ github_username }}/{{ project_name }}
-  {% endif %}
+    make run
 
 _tasks:
   - "git init"
   - "uv venv"
-  - "uv pip install -e .[dev]"
-  - "uv run python -m ipykernel install --user --name {{ project_name }} --display-name 'Python ({{ project_name }})"
-  - "bash setup.sh"
+  - "uv pip install -e ."
+  - "uv run python -m ipykernel install --user --name {{ project_name }} --display-name 'Python ({{ project_name }})'"
   - "uv run pre-commit install"
-  - "[ -n '{{ remote_url }}' ] && (git remote remove origin; git tag | xargs git tag -d 2>/dev/null || true; git remote add origin {{ remote_url }}) || true"
+  - "git add ."
+  - "git commit -m 'init {{ project_name }} from kovasz template'"
 
 _exclude:
   - README.md
