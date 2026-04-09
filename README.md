@@ -2,8 +2,6 @@
 
 minimal geospatial data science template
 
-*kovász is hungarian for leaven (sourdough starter)*
-
 ## quick start
 
 ```bash
@@ -17,13 +15,11 @@ or from a local clone:
 mkdir -p my-project && copier copy --trust path/to/kovasz my-project
 ```
 
-> **note:** create the destination directory first so copier can default the project name from the folder name.
-
 ## prompts
 
 - **project_name** — lowercase, hyphens ok
 - **description** — one-liner
-- **author** — your name
+- **author** — name
 
 ## comes with
 
