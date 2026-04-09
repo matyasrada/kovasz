@@ -1,11 +1,8 @@
-.PHONY: init run clean
+.PHONY: init clean
 
 init:
 	uv sync
 	uv run pre-commit install
-
-run:
-	uv run jupyter lab
 
 clean:
 	rm -rf .venv __pycache__ .ruff_cache .pytest_cache

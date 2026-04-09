@@ -41,10 +41,6 @@ _message_after_copy: |
 
   ✓ Project '{{ project_name }}' created!
 
-  Next steps:
-    cd {{ project_name }}
-    make run
-
 _tasks:
   - "git init"
   - "uv venv"

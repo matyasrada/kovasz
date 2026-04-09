@@ -9,14 +9,12 @@ minimal geospatial data science template
 ```bash
 uv tool install copier
 mkdir -p my-project && copier copy --trust gh:matyasrada/kovasz my-project
-cd my-project && make run
 ```
 
 or from a local clone:
 
 ```bash
 mkdir -p my-project && copier copy --trust path/to/kovasz my-project
-cd my-project && make run
 ```
 
 > **note:** create the destination directory first so copier can default the project name from the folder name.
