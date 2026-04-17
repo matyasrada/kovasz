@@ -21,20 +21,31 @@ mkdir -p my-project && copier copy --trust path/to/kovasz my-project
 - **description** — one-liner
 - **author** — name
 
+## on `copier copy`, kovasz:
+
+1. creates a **uv venv** and installs deps
+2. registers a **jupyter kernel** named after your project
+3. sets up **pre-commit** hooks — ruff, ruff-format, nbstripout
+4. initialises a git repo with an initial commit
+
 ## comes with
 
 **tools** — uv, ruff, pre-commit, nbstripout, jupyterlab, ipykernel
 
 **geospatial stack** — xarray, rioxarray, rasterio, geopandas, pyproj
 
-**storage** — zarr, netcdf4, h5netcdf
+**storage** — zarr, netcdf4, h5netcdf, h5py, virtualizarr
 
 **stac/odc** — pystac, pystac-client, odc-stac, odc-geo, odc-loader
 
 **cloud** — boto3, s3fs, obstore
 
-**compute** — dask, distributed
+**compute** — dask, distributed, jax
 
 **ml** — scikit-learn, mlflow
 
 **viz** — matplotlib, cartopy, lonboard
+
+## does not comes with
+
+places for your /data
