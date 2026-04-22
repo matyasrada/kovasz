@@ -46,6 +46,10 @@ mkdir -p my-project && copier copy --trust path/to/kovasz my-project
 
 **viz** — matplotlib, cartopy, lonboard
 
-## does not comes with
+## does not come with
 
 places for your /data
+
+## license
+
+MIT
